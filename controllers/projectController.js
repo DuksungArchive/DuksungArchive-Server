@@ -3,12 +3,13 @@ const Project = require('../models/Project');
 // 프로젝트 목록 가져오기(필터 및 검색)
 exports.getProjects = async (req, res) => {
     try {
-        const { category, year, name } = req.query;
+        const { category, year, name, major} = req.query;
         const filter = {};
 
         if (category) filter.category = new RegExp(category, 'i');
         if (year) filter.year = parseInt(year);
         if (name) filter.name = new RegExp(name, 'i');
+        if (major) filter.major = new RegExp(major, 'i');
 
         const projects = await Project.find(filter);
         res.status(200).json(projects);
