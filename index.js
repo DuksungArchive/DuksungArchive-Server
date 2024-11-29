@@ -8,7 +8,12 @@ const guestbookRoutes = require('./routes/guestbookRoutes');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: '*', // 또는 특정 도메인으로 제한
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
 // MongoDB 연결
