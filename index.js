@@ -32,7 +32,7 @@ mongoose.connect(mongoUri, {
 
 // 라우트 설정
 app.use('/api/projects', projectRoutes);
-app.use('/api/guestbook', guestbookRoutes);
+app.use('/api/guestbooks', guestbookRoutes);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`서버가 http://localhost:${PORT}에서 실행 중입니다.`));
