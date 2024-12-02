@@ -19,12 +19,16 @@ app.use(express.json());
 // MongoDB 연결
 const mongoUri = process.env.MONGO_URI; // 환경 변수에서 URI 가져오기
 mongoose.connect(mongoUri, {
-    authMechanism: "SCRAM-SHA-256", // 인증 메커니즘 지정
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
 })
     .then(() => console.log('MongoDB에 연결되었습니다.'))
-    .catch(err => console.error('MongoDB 연결 실패:', err));
+    .catch(err => {
+        console.error('MongoDB 연결 실패:');
+        console.error('URI:', process.env.MONGO_URI); // 연결 문자열 출력 (비밀번호 숨기기)
+        console.error('에러 메시지:', err.message);
+        console.error('전체 에러 로그:', err);
+      });
 
 // 라우트 설정
 app.use('/api/projects', projectRoutes);
